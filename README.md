@@ -29,3 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Criar um novo componente chamado welcome:
 
 ng generate component welcome
+
+# PARA USAR O ngModule, precisa importar o FormsModule no app.module (sessao imports)
+
+nao esquecer de usar o import: import { FormsModule } from '@angular/forms';
+
