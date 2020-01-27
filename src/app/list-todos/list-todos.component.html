@@ -1,5 +1,7 @@
 <h1>Minhas tarefas</h1>
 
+<div class="alert alert-success" *ngIf="message">{{message}}</div>
+
 <div class="container">
   <table class="table">
     <thead>
@@ -7,6 +9,8 @@
         <th>Descrição</th>
         <th>Data final</th>
         <th>Finalizada?</th>
+        <th>Atualizar</th>
+        <th>Remover</th>
       </tr>
     </thead>
 
@@ -15,6 +19,8 @@
         <td>{{todo.description}}</td>
         <td>{{todo.targetDate | date}}</td>
         <td>{{todo.done}}</td>
+        <td><button (click)="atualizarTodo(todo.id)" class="btn btn-success">Atualizar</button></td>
+        <td><button (click)="deleteTodo(todo.id)" class="btn btn-warning">Remover</button></td>
       </tr>
     </tbody>
 

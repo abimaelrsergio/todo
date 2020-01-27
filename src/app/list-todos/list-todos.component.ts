@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 
 export class Todo {
 
@@ -33,17 +34,40 @@ export class ListTodosComponent implements OnInit {
     description: 'Learn to Dance'
   }*/
 
+  message:string;
+
   constructor(
-    private todoService:TodoDataService
+    private todoService:TodoDataService,
+    private router:Router
   ) { }
 
   ngOnInit() {
+    this.atualizarTarefas();
+  }
+
+  atualizarTarefas(){
     this.todoService.retrieveAllTodos('gigi').subscribe(
       response => {
         console.log(response);
         this.todos = response;
       }
     )
+  }
+
+  deleteTodo(id){
+    console.log(`delete ${id}`);
+    this.todoService.deleteTodo('gigi', id).subscribe(
+      response => {
+        console.log(response);
+        this.message =`Tarefa (id: ${id}) removida com sucesso!`;
+        this.atualizarTarefas();
+      }
+    )
+  }
+
+  atualizarTodo(id){
+    console.log(`atualizar ${id}`);
+    this.router.navigate(['todos',id]);
   }
 
 }
